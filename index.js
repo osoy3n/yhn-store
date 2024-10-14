@@ -13,5 +13,5 @@ app.get('/', (req, res) => {
 routerApi(app)
 
 app.listen(port, () => {
-  console.log('Server running in port: ' + port)
+  console.log(`Server running in port: ${port}`)
 })
