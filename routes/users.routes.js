@@ -1,7 +1,7 @@
 
-const express = require('express')
+const { Router } = require('express')
 
-const router = express.Router()
+const router = Router()
 
 router.get('/', (req, res) => {
   const { limit, offset } = req.query
