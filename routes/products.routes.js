@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/filter', (req, res) => {
-  res.send('Filter products')
+  res.status(200).send('Filter products')
 })
 
 router.get('/:id', async (req, res, next) => {
@@ -36,7 +36,7 @@ router.patch('/:id', async (req, res, next) => {
     const body = req.body
     const product = await service.update(id, body)
 
-    res.json(product)
+    res.status(200).json(product)
   } catch (error) {
     next(error)
   }
@@ -46,7 +46,7 @@ router.delete('/:id', async (req, res) => {
   const { id } = req.params
   const response = await service.delete(id)
 
-  res.json(response)
+  res.status(200).json(response)
 })
 
 module.exports = router
