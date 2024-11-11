@@ -1,11 +1,24 @@
 const express = require('express')
+const cors = require('cors')
 const routerApi = require('./routes')
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler')
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
+
+const whitelist = ['http://localhost:8080', 'http://localhost:5006']
+const options = {
+  origin: (origin, callback) => {
+    if (whitelist.includes(origin) || !origin) {
+      callback(null, true)
+    } else {
+      callback(new Error('Request denied'))
+    }
+  }
+}
 
 app.use(express.json())
+app.use(cors(options))
 
 app.get('/', (req, res) => {
   res.send('Server up')
