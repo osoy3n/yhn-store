@@ -15,7 +15,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@hapi/boom": "^10.0.1",
+    "@hapi/boom": "^9.1.4",
     "cors": "^2.8.5",
     "express": "^4.21.1"
   },

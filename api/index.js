@@ -33,3 +33,5 @@ app.use(errorHandler)
 app.listen(port, () => {
   console.log(`Server running in port: ${port}`)
 })
+
+module.exports = app
