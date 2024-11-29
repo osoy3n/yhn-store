@@ -1,11 +1,15 @@
-const mockProducts = require('../mocks/products')
-
 const boom = require('@hapi/boom')
+
+const mockProducts = require('../mocks/products')
+// const getConnection = require('../libs/postgres')
+const pool = require('../libs/postgres.pool')
 
 class ProductsServices {
   constructor() {
     this.products = []
     this.generate()
+    this.pool = pool
+    this.pool.on('error', (err) => console.error(err))
   }
 
   generate() {
@@ -22,8 +26,16 @@ class ProductsServices {
     return newProduct
   }
 
+  // async find() {
+  //   const client = await getConnection()
+  //   const response = await client.query('SELECT * FROM tasks')
+  //   return response.rows
+  // }
+
   async find() {
-    return this.products
+    const query = 'SELECT * FROM tasks'
+    const response = await this.pool.query(query)
+    return response.rows
   }
 
   async findOne(id) {
