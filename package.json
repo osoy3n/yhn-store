@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   },
   "scripts": {
     "dev": "node --watch --env-file .env api/index.js",
@@ -19,7 +19,8 @@
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "joi": "^17.13.3",
-    "pg": "^8.13.1"
+    "pg": "^8.13.1",
+    "sequelize": "^6.37.5"
   },
   "devDependencies": {
     "eslint": "^9.13.0",
