@@ -1,17 +1,15 @@
 const boom = require('@hapi/boom')
 
-const { models } = require('../libs/sequelize')
+class CategoriesService {
 
-class UserService {
-  constructor() {}
-
+  constructor(){
+  }
   async create(data) {
     return data
   }
 
   async find() {
-    const response = await models.User.findAll()
-    return response
+    return []
   }
 
   async findOne(id) {
@@ -28,6 +26,7 @@ class UserService {
   async delete(id) {
     return { id }
   }
+
 }
 
-module.exports = UserService
+module.exports = CategoriesService

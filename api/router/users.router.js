@@ -1,10 +1,10 @@
 const { Router } = require('express')
-const UserService = require('../services/user.service')
+const UsersService = require('../services/users.service')
 const validatorHandler = require('../middlewares/validator.handler')
 const { updateUserSchema, createUserSchema, getUserSchema } = require('../schemas/users.schema')
 
 const router = Router()
-const service = new UserService()
+const service = new UsersService()
 
 router.get('/', async (req, res, next) => {
   try {
