@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-const routerApi = require('./routes')
+const routerApi = require('./router')
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler')
 
 const app = express()
