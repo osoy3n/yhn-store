@@ -6,7 +6,11 @@ class UsersService {
   constructor() {}
 
   async create(data) {
-    const newUser = await models.User.create(data)
+    const user = {
+      id: crypto.randomUUID(),
+      ...data
+    }
+    const newUser = await models.User.create(user)
     return newUser
   }
 
