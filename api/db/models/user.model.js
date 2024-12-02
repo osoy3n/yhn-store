@@ -31,15 +31,18 @@ const UserSchema = {
 }
 
 class User extends Model {
-  static associate() {
-    // TODO: Add associates
+  static associate(models) {
+    this.hasOne(models.Customer, {
+      as: 'customer',
+      foreignKey: 'userId'
+    })
   }
 
   static config(sequelize) {
     return {
+      modelName: 'User',
       sequelize,
       tableName: USER_TABLE,
-      modelName: 'User',
       timestamps: false
     }
   }
