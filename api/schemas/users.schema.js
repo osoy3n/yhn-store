@@ -1,7 +1,7 @@
 const Joi = require('joi')
 
-const id = Joi.string().uuid()
 const email = Joi.string().email()
+const id = Joi.string().uuid()
 const password = Joi.string().min(8)
 const role = Joi.string().min(5)
 

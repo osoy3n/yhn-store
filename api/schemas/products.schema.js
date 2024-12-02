@@ -1,23 +1,23 @@
 const Joi = require('joi')
 
+const description = Joi.string().min(10)
 const id = Joi.string().uuid()
-const product_name = Joi.string().min(3).max(30)
-const email = Joi.string().email()
-const gender = Joi.string().valid('male', 'female', 'other')
-const ip_address = Joi.string().ip()
+const image = Joi.string().uri()
+const name = Joi.string().min(3).max(15)
+const price = Joi.number().integer().min(10)
 
 const createProductSchema = Joi.object({
-  product_name: product_name.required(),
-  email: email.required(),
-  gender: gender.required(),
-  ip_address: ip_address.required()
+  description: description.required(),
+  image: image.required(),
+  name: name.required(),
+  price: price.required()
 })
 
 const updateProductSchema = Joi.object({
-  product_name: product_name,
-  email: email,
-  gender: gender,
-  ip_address: ip_address
+  description,
+  image: image,
+  name: name,
+  price: price
 })
 
 const getProductSchema = Joi.object({
