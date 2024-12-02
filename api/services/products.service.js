@@ -1,21 +1,17 @@
 const boom = require('@hapi/boom')
 
-const mockProducts = require('../mocks/products')
 // const getConnection = require('../libs/postgres')
 // const pool = require('../libs/postgres.pool')
 const sequelize = require('../libs/sequelize')
 
 class ProductsServices {
   constructor() {
-    this.products = []
     this.generate()
     // this.pool = pool
     // this.pool.on('error', (err) => console.error(err))
   }
 
-  generate() {
-    this.products = mockProducts
-  }
+  generate() {}
 
   async create(data) {
     const newProduct = {
