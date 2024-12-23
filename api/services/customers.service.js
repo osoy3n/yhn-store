@@ -21,18 +21,16 @@ class CustomersService {
   }
 
   async find() {
-    const response = await models.Customer.findAll({
-      include: ['user']
-    })
+    const response = await models.Customer.findAll({include: ['user']})
     return response
   }
 
   async findOne(id) {
-    const user = await models.Customer.findByPk(id)
-    if (!user) {
+    const customer = await models.Customer.findByPk(id, {include: ['user']})
+    if (!customer) {
       throw boom.notFound('Customer not found')
     }
-    return user
+    return customer
   }
 
   async update(id, changes) {
@@ -49,7 +47,6 @@ class CustomersService {
       message: 'Customer deleted'
     }
   }
-
 }
 
 module.exports = CustomersService
