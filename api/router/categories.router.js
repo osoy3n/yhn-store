@@ -8,8 +8,7 @@ const service = new CategoriesService()
 
 router.get('/', async (req, res, next) => {
   try {
-    const categories = await service.find()
-    res.json(categories)
+    res.status(200).json(await service.find())
   } catch (error) {
     next(error)
   }
@@ -20,8 +19,7 @@ router.get('/:id',
   async (req, res, next) => {
     try {
       const { id } = req.params
-      const category = await service.findOne(id)
-      res.json(category)
+      res.status(200).json(await service.findOne(id))
     } catch (error) {
       next(error)
     }
@@ -33,8 +31,7 @@ router.post('/',
   async (req, res, next) => {
     try {
       const body = req.body
-      const newCategory = await service.create(body)
-      res.status(201).json(newCategory)
+      res.status(201).json(await service.create(body))
     } catch (error) {
       next(error)
     }
@@ -48,8 +45,7 @@ router.patch('/:id',
     try {
       const { id } = req.params
       const body = req.body
-      const category = await service.update(id, body)
-      res.json(category)
+      res.status(200).json(await service.update(id, body))
     } catch (error) {
       next(error)
     }
@@ -61,8 +57,7 @@ router.delete('/:id',
   async (req, res, next) => {
     try {
       const { id } = req.params
-      await service.delete(id)
-      res.status(201).json({id})
+      res.status(200).json(await service.delete(id))
     } catch (error) {
       next(error)
     }
