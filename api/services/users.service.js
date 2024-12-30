@@ -13,8 +13,17 @@ class UsersService {
     return newUser
   }
 
-  async find() {
-    const response = await models.User.findAll({include: ['customer']})
+  async find(limit, offset) {
+    const options = {
+      include: ['customer']
+    }
+
+    if (limit && offset) {
+      options.limit = limit
+      options.offset = offset
+    }
+
+    const response = await models.User.findAll(options)
     return response
   }
 
