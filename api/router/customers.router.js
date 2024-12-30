@@ -1,14 +1,17 @@
 const express = require('express')
 const CustomerService = require('../services/customers.service')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createCustomerSchema, getCustomerSchema, updateCustomerSchema } = require('../schemas/customers.schema')
+const { createCustomerSchema, getCustomerSchema, updateCustomerSchema, queryCustomerSchema } = require('../schemas/customers.schema')
 
 const router = express.Router()
 const service = new CustomerService()
 
-router.get('/',  async (req, res, next) => {
+router.get('/',
+  validatorHandler(queryCustomerSchema, 'query'),
+  async (req, res, next) => {
   try {
-    res.status(200).json(await service.find())
+    const { limit, offset } = req.query
+    res.status(200).json(await service.find(limit, offset))
   } catch (error) {
     next(error)
   }
