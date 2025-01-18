@@ -1,14 +1,17 @@
 const express = require('express')
 const CategoriesService = require('../services/categories.service')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createCategorySchema, updateCategorySchema, getCategorySchema } = require('../schemas/categories.schema')
+const { createCategorySchema, updateCategorySchema, getCategorySchema, queryCategorySchema } = require('../schemas/categories.schema')
 
 const router = express.Router()
 const service = new CategoriesService()
 
-router.get('/', async (req, res, next) => {
+router.get('/',
+  validatorHandler(queryCategorySchema, 'query'),
+  async (req, res, next) => {
   try {
-    res.status(200).json(await service.find())
+    const query = req.query
+    res.status(200).json(await service.find(query))
   } catch (error) {
     next(error)
   }
