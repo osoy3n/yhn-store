@@ -22,7 +22,7 @@ class OrdersService {
     return newItem
   }
 
-  async find(limit, offset) {
+  async find(query) {
     const options = {
       include: [
         {
@@ -32,6 +32,7 @@ class OrdersService {
         'items'
       ]
     }
+    const { limit, offset } = query
 
     if (limit && offset) {
       options.limit = limit

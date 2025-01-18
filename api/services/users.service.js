@@ -13,10 +13,11 @@ class UsersService {
     return newUser
   }
 
-  async find(limit, offset) {
+  async find(query) {
     const options = {
       include: ['customer']
     }
+    const { limit, offset } = query
 
     if (limit && offset) {
       options.limit = limit

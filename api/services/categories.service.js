@@ -13,8 +13,9 @@ class CategoriesService {
     return newCategory
   }
 
-  async find(limit, offset) {
+  async find(query) {
     const options = {}
+    const { limit, offset } = query
 
     if (limit && offset) {
       options.limit = limit
